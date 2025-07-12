@@ -104,4 +104,16 @@ def edit_todo(request, id):
         
         
     return render(request,'main/edit_task.html',{'todo':previous_data})
+
+@login_required
+def delete_todo(request, id):
+    todo = get_object_or_404(Todo, id=id)
+    
+    if todo.user == request.user:
+        todo.delete()
+        messages.success(request, 'Todo deleted successfully!')
+    else:
+        messages.error(request, 'You are not authorized to delete this Todo')
+    
+    return redirect('index')
     

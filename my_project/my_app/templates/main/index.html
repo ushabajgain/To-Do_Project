@@ -43,13 +43,29 @@
 .magnetic-effect:hover {
   transform: scale(1.05);
 }
+
+/* Smooth transition between sections */
+.section-transition {
+  position: relative;
+}
+
+.section-transition::before {
+  content: '';
+  position: absolute;
+  top: -50px;
+  left: 0;
+  right: 0;
+  height: 50px;
+  background: linear-gradient(to bottom, transparent, rgba(255, 255, 255, 0.8));
+  pointer-events: none;
+}
 </style>
 
 <body class="font-['Inter'] bg-gradient-to-br from-purple-50 via-pink-50 to-indigo-50 min-h-screen">
     {% include "components/_navbar.html" %}
 
     <!-- Hero Section -->
-    <section class="relative overflow-hidden py-20">
+    <section class="relative overflow-hidden py-32">
         <!-- Background Decorations -->
         <div class="absolute inset-0">
             <div class="absolute top-20 left-10 w-72 h-72 bg-purple-300 rounded-full mix-blend-multiply filter blur-xl opacity-70"></div>
@@ -112,8 +128,9 @@
         </div>
     </section>
 
+    
     <!-- Tasks Section -->
-    <section id="tasks" class="py-20 px-4 sm:px-6 lg:px-8 relative">
+    <section id="tasks" class="section-transition py-20 px-4 sm:px-6 lg:px-8 relative">
         <!-- Background Pattern -->
         <div class="absolute inset-0 opacity-5">
             <div class="absolute inset-0" style="background-image: radial-gradient(circle at 1px 1px, #8b5cf6 1px, transparent 0); background-size: 40px 40px;"></div>
@@ -131,39 +148,6 @@
                 <p class="text-xl text-gray-600 max-w-2xl mx-auto">
                     Keep track of everything that matters. Your tasks, your way.
                 </p>
-            </div>
-
-            <!-- Feature Highlights -->
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto mb-16">
-                <div class="glass-effect rounded-2xl p-6 hover-lift">
-                    <div class="w-12 h-12 bg-gradient-to-r from-purple-400 to-pink-400 rounded-xl flex items-center justify-center mx-auto mb-4">
-                        <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
-                        </svg>
-                    </div>
-                    <h3 class="text-lg font-semibold text-gray-800 mb-2">Lightning Fast</h3>
-                    <p class="text-gray-600 text-sm">Create and manage tasks in seconds</p>
-                </div>
-                
-                <div class="glass-effect rounded-2xl p-6 hover-lift">
-                    <div class="w-12 h-12 bg-gradient-to-r from-pink-400 to-indigo-400 rounded-xl flex items-center justify-center mx-auto mb-4">
-                        <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                        </svg>
-                    </div>
-                    <h3 class="text-lg font-semibold text-gray-800 mb-2">Smart Organization</h3>
-                    <p class="text-gray-600 text-sm">Intelligent task categorization</p>
-                </div>
-                
-                <div class="glass-effect rounded-2xl p-6 hover-lift">
-                    <div class="w-12 h-12 bg-gradient-to-r from-indigo-400 to-purple-400 rounded-xl flex items-center justify-center mx-auto mb-4">
-                        <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path>
-                        </svg>
-                    </div>
-                    <h3 class="text-lg font-semibold text-gray-800 mb-2">Secure & Private</h3>
-                    <p class="text-gray-600 text-sm">Your data stays protected</p>
-                </div>
             </div>
 
             <!-- Empty State -->
@@ -190,84 +174,55 @@
                 </a>
             </div>
             {% else %}
-            <!-- Tasks Grid -->
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                {% for item in todos %}
-                <div class="group bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 overflow-hidden hover-lift">
-                    <!-- Animated Border -->
-                    <div class="absolute inset-0 bg-gradient-to-r from-purple-400 via-pink-400 to-indigo-400 rounded-2xl opacity-0 group-hover:opacity-20 transition-opacity duration-500"></div>
-                    
-                    <!-- Task Header -->
-                    <div class="relative p-6 border-b border-gray-100">
-                        <div class="flex items-center justify-between mb-4">
-                            <div class="flex items-center space-x-2">
-                                <div class="w-3 h-3 bg-gradient-to-r from-purple-400 to-pink-400 rounded-full"></div>
-                                <span class="text-sm font-semibold text-purple-600">Due {{item.date|date:"M d"}}</span>
-                            </div>
-                            <div class="flex items-center space-x-2">
-                                {% if item.user == request.user %}
-                                <a href="{% url 'edit_todo' item.id %}" class="p-2 text-gray-400 hover:text-purple-600 transition-colors magnetic-effect">
-                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path>
-                                    </svg>
-                                </a>
-                                {% endif %}
-                            </div>
-                        </div>
-                        
-                        <!-- Task Title -->
-                        <a href="{% url 'single' item.id %}">
-                            <h3 class="text-xl font-bold text-gray-800 mb-3 group-hover:text-purple-600 transition-colors line-clamp-2">
-                                {{item.title}}
-                            </h3>
-                        </a>
-                        
-                        <!-- Task Description -->
-                        <p class="text-gray-600 line-clamp-3 leading-relaxed">
-                            {{item.description}}
-                        </p>
-                        
-                        <!-- Progress Bar -->
-                        <div class="mt-4">
-                            <div class="w-full bg-gray-200 rounded-full h-2">
-                                <div class="bg-gradient-to-r from-purple-500 to-pink-500 h-2 rounded-full transition-all duration-500 group-hover:w-full" style="width: 60%;"></div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- Task Footer -->
-                    <div class="relative p-6 bg-gray-50">
-                        <div class="flex items-center justify-between">
-                            <div class="flex items-center space-x-2">
-                                <div class="w-8 h-8 bg-gradient-to-r from-purple-400 to-pink-400 rounded-full flex items-center justify-center">
-                                    <span class="text-white text-sm font-semibold">{{item.user.username|first|upper}}</span>
-                                </div>
-                                <span class="text-sm text-gray-600">{{item.user.username}}</span>
-                            </div>
-                            <span class="text-xs text-gray-500">{{item.created_at|date:"M d, Y"}}</span>
-                        </div>
-                        
-                        <!-- Action Buttons -->
-                        <div class="flex justify-end mt-4 space-x-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                            <button class="p-2 text-purple-600 hover:bg-purple-100 rounded-lg transition-colors magnetic-effect" title="Mark as complete">
-                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                                </svg>
-                            </button>
-                            <button class="p-2 text-pink-600 hover:bg-pink-100 rounded-lg transition-colors magnetic-effect" title="Add to favorites">
-                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
-                                </svg>
-                            </button>
-                        </div>
-                    </div>
+            <!-- Tasks Table -->
+            <div class="bg-white rounded-2xl shadow-lg overflow-hidden">
+                <div class="overflow-x-auto">
+                    <table class="w-full">
+                        <thead class="bg-gradient-to-r from-purple-50 to-pink-50">
+                            <tr>
+                                <th class="px-6 py-4 text-left text-sm font-semibold text-gray-700">Title</th>
+                                <th class="px-6 py-4 text-left text-sm font-semibold text-gray-700">Description</th>
+                                <th class="px-6 py-4 text-left text-sm font-semibold text-gray-700">Due Date</th>
+                                <th class="px-6 py-4 text-left text-sm font-semibold text-gray-700">Created</th>
+                                <th class="px-6 py-4 text-left text-sm font-semibold text-gray-700">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-gray-100">
+                            {% for item in todos %}
+                            <tr class="hover:bg-gray-50 transition-colors duration-200">
+                                <td class="px-6 py-4">
+                                    <div class="text-sm font-semibold text-gray-900">{{ item.title }}</div>
+                                </td>
+                                <td class="px-6 py-4">
+                                    <div class="text-sm text-gray-600 max-w-xs truncate">{{ item.description }}</div>
+                                </td>
+                                <td class="px-6 py-4">
+                                    <div class="text-sm text-gray-600">{{ item.date|date:"M d, Y" }}</div>
+                                </td>
+                                <td class="px-6 py-4">
+                                    <div class="text-sm text-gray-600">{{ item.created_at|date:"M d, Y" }}</div>
+                                </td>
+                                <td class="px-6 py-4">
+                                    <div class="flex items-center space-x-2">
+                                        {% if item.user == request.user %}
+                                        <a href="{% url 'edit_todo' item.id %}" class="inline-flex items-center px-3 py-1.5 text-xs font-medium text-purple-700 bg-purple-100 border border-purple-200 rounded-lg hover:bg-purple-200 hover:border-purple-300 transition-all duration-200" title="Edit">
+                                            Edit
+                                        </a>
+                                        <a href="{% url 'delete_todo' item.id %}" class="inline-flex items-center px-3 py-1.5 text-xs font-medium text-red-700 bg-red-100 border border-red-200 rounded-lg hover:bg-red-200 hover:border-red-300 transition-all duration-200" title="Delete">
+                                            Delete
+                                        </a>
+                                        {% endif %}
+                                    </div>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
                 </div>
-                {% endfor %}
             </div>
             {% endif %}
         </div>
     </section>
-
 
 </body>
 </html>

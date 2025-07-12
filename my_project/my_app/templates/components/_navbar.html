@@ -6,12 +6,12 @@
       <!-- 🔥 Logo -->
       <a href="{% url 'index' %}" class="group">
         <div class="flex items-center space-x-3 text-2xl font-extrabold">
-          <div class="w-10 h-10 bg-gradient-to-r from-purple-600 to-indigo-600 rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+          <div class="w-10 h-10 bg-gradient-to-r from-purple-600 to-indigo-600 rounded-xl flex items-center justify-center"> 
             <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"></path>
             </svg>
           </div>
-          <span class="bg-gradient-to-r from-purple-600 to-indigo-600 bg-clip-text text-transparent">TODO App</span>
+          <span class="bg-gradient-to-r from-purple-600 to-indigo-600 bg-clip-text text-transparent">TODO APP</span>
         </div>
 
       <!-- Desktop Links -->
@@ -35,7 +35,7 @@
 
         <!-- Gradient + Outline Buttons -->
         <a href="{% url 'create_todo' %}" class="group">
-          <button class="bg-gradient-to-r from-purple-600 to-indigo-600 text-white px-6 py-3 rounded-xl text-sm font-semibold shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 flex items-center">
+          <button class="bg-gradient-to-r from-purple-600 to-indigo-600 text-white px-4 py-2 rounded-xl text-sm font-semibold shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 flex items-center">
             <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
             </svg>
@@ -45,7 +45,9 @@
 
         {% if user.is_authenticated %}
           <div class="flex items-center space-x-4">
-            <span class="text-gray-700 font-medium">{{ user.username }}</span>
+            <div class="bg-gradient-to-r from-purple-500 to-pink-500 text-white px-4 py-2 rounded-xl text-sm font-semibold shadow-lg hover:shadow-xl transition-all duration-300">
+              {{ user.username }}
+            </div>
             <a href="{% url 'logout' %}" class="group">
               <button class="border-2 border-purple-200 text-purple-600 hover:bg-purple-50 px-4 py-2 rounded-xl text-sm font-semibold transition-all duration-300 hover:border-purple-300 flex items-center">
                 <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -97,7 +99,9 @@
       
       {% if user.is_authenticated %}
         <div class="mb-4">
-          <span class="text-gray-700 font-medium">{{ user.username }}</span>
+          <div class="bg-gradient-to-r from-purple-500 to-pink-500 text-white px-4 py-2 rounded-xl text-sm font-semibold shadow-lg transition-all duration-300 text-center">
+            {{ user.username }}
+          </div>
         </div>
         <a href="{% url 'logout' %}" class="block">
           <button class="w-full border-2 border-purple-200 text-purple-600 hover:bg-purple-50 px-6 py-3 rounded-xl text-sm font-semibold transition-all duration-300 hover:border-purple-300 flex items-center justify-center">
