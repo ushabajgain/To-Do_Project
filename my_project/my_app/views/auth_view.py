@@ -51,13 +51,6 @@ def register_page(request):
 
 
         if not errors:
-            # user = User.objects.create(
-            #     username=username,
-            #     email=email
-            # )
-            # user.set_password(password)
-            # user.save()
-            
             user = User.objects.create_user(
             username=username,
             email=email,
