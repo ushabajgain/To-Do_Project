@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>User Profile</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+   {% load static %}
+  <link href="{% static 'src/styles.css' %}" rel="stylesheet">
+</head>
+<body class="text-gray-800 relative overflow-x-hidden overflow-y-auto min-h-screen pb-8 bg-white">
+  <!-- Soft Pink & Lavender Blobs and Silvery Sparkles Background -->
+  <div class="pointer-events-none fixed inset-0 w-full h-full z-0">
+    <!-- Top Right Gradient Blob -->
+    <div style="position:absolute;top:-10%;right:-10%;width:38vw;height:38vw;background:radial-gradient(circle at 60% 40%,rgba(236, 180, 255,0.32) 0%,rgba(255,182,193,0.28) 60%,rgba(255,255,255,0) 100%);border-radius:50%;z-index:1;"></div>
+    <!-- Bottom Left Gradient Blob -->
+    <div style="position:absolute;bottom:-10%;left:-10%;width:38vw;height:38vw;background:radial-gradient(circle at 40% 60%,rgba(255,182,193,0.28) 0%,rgba(236, 180, 255,0.32) 60%,rgba(255,255,255,0) 100%);border-radius:50%;z-index:1;"></div>
+    <!-- Sparkles (SVG, blinking, muted, foggy, silvery shine, scattered) -->
+    <svg class="sparkle blink" style="position:absolute;top:7%;left:12%;z-index:2;animation-delay:0s;" width="64" height="64" viewBox="0 0 64 64" fill="none"><g filter="url(#glow1)"><polygon points="32,10 38,28 58,28 42,40 48,58 32,48 16,58 22,40 6,28 26,28" fill="#f8c9d8" fill-opacity="0.7"/></g><defs><filter id="glow1" x="0" y="0" width="64" height="64"><feDropShadow dx="0" dy="0" stdDeviation="24" flood-color="#e0e6f7"/><feDropShadow dx="0" dy="0" stdDeviation="40" flood-color="#dbeafe"/><feDropShadow dx="0" dy="0" stdDeviation="48" flood-color="#fff"/></filter></defs></svg>
+    <svg class="sparkle blink" style="position:absolute;top:18%;right:8%;z-index:2;animation-delay:0.7s;" width="36" height="36" viewBox="0 0 36 36" fill="none"><g filter="url(#glow2)"><polygon points="18,4 21,13 31,13 23,19 26,28 18,22 10,28 13,19 5,13 15,13" fill="#c7d6ee" fill-opacity="0.7"/></g><defs><filter id="glow2" x="0" y="0" width="36" height="36"><feDropShadow dx="0" dy="0" stdDeviation="16" flood-color="#e0e6f7"/><feDropShadow dx="0" dy="0" stdDeviation="28" flood-color="#dbeafe"/><feDropShadow dx="0" dy="0" stdDeviation="32" flood-color="#fff"/></filter></defs></svg>
+    <svg class="sparkle blink" style="position:absolute;bottom:12%;left:18%;z-index:2;animation-delay:0.3s;" width="64" height="64" viewBox="0 0 64 64" fill="none"><g filter="url(#glow3)"><polygon points="32,10 38,28 58,28 42,40 48,58 32,48 16,58 22,40 6,28 26,28" fill="#d6c9f8" fill-opacity="0.7"/></g><defs><filter id="glow3" x="0" y="0" width="64" height="64"><feDropShadow dx="0" dy="0" stdDeviation="24" flood-color="#e0e6f7"/><feDropShadow dx="0" dy="0" stdDeviation="40" flood-color="#dbeafe"/><feDropShadow dx="0" dy="0" stdDeviation="48" flood-color="#fff"/></filter></defs></svg>
+    <svg class="sparkle blink" style="position:absolute;bottom:22%;right:14%;z-index:2;animation-delay:1.1s;" width="36" height="36" viewBox="0 0 36 36" fill="none"><g filter="url(#glow4)"><polygon points="18,4 21,13 31,13 23,19 26,28 18,22 10,28 13,19 5,13 15,13" fill="#b6d6f6" fill-opacity="0.7"/></g><defs><filter id="glow4" x="0" y="0" width="36" height="36"><feDropShadow dx="0" dy="0" stdDeviation="16" flood-color="#e0e6f7"/><feDropShadow dx="0" dy="0" stdDeviation="28" flood-color="#dbeafe"/><feDropShadow dx="0" dy="0" stdDeviation="32" flood-color="#fff"/></filter></defs></svg>
+    <svg class="sparkle blink" style="position:absolute;top:32%;left:68%;z-index:2;animation-delay:0.4s;" width="28" height="28" viewBox="0 0 28 28" fill="none"><g filter="url(#glow5)"><polygon points="14,3 16,9 23,9 17,14 19,21 14,17 9,21 11,14 5,9 12,9" fill="#fff" fill-opacity="0.6"/></g><defs><filter id="glow5" x="0" y="0" width="28" height="28"><feDropShadow dx="0" dy="0" stdDeviation="12" flood-color="#e0e6f7"/><feDropShadow dx="0" dy="0" stdDeviation="20" flood-color="#dbeafe"/><feDropShadow dx="0" dy="0" stdDeviation="24" flood-color="#fff"/></filter></defs></svg>
+    <svg class="sparkle blink" style="position:absolute;top:55%;left:22%;z-index:2;animation-delay:1.3s;" width="22" height="22" viewBox="0 0 22 22" fill="none"><g filter="url(#glow6)"><polygon points="11,2 12,6 17,6 13,9 14,15 11,12 8,15 9,9 5,6 10,6" fill="#f8c9d8" fill-opacity="0.6"/></g><defs><filter id="glow6" x="0" y="0" width="22" height="22"><feDropShadow dx="0" dy="0" stdDeviation="8" flood-color="#e0e6f7"/><feDropShadow dx="0" dy="0" stdDeviation="14" flood-color="#dbeafe"/><feDropShadow dx="0" dy="0" stdDeviation="18" flood-color="#fff"/></filter></defs></svg>
+    <svg class="sparkle blink" style="position:absolute;top:78%;left:74%;z-index:2;animation-delay:0.8s;" width="32" height="32" viewBox="0 0 32 32" fill="none"><g filter="url(#glow7)"><polygon points="16,4 18,10 26,10 19,15 21,22 16,18 11,22 13,15 6,10 14,10" fill="#fff" fill-opacity="0.6"/></g><defs><filter id="glow7" x="0" y="0" width="32" height="32"><feDropShadow dx="0" dy="0" stdDeviation="10" flood-color="#e0e6f7"/><feDropShadow dx="0" dy="0" stdDeviation="18" flood-color="#dbeafe"/><feDropShadow dx="0" dy="0" stdDeviation="22" flood-color="#fff"/></filter></defs></svg>
+    <svg class="sparkle blink" style="position:absolute;bottom:35%;right:28%;z-index:2;animation-delay:1.7s;" width="24" height="24" viewBox="0 0 24 24" fill="none"><g filter="url(#glow8)"><polygon points="12,3 13,7 18,7 14,10 15,16 12,13 9,16 10,10 6,7 11,7" fill="#c7d6ee" fill-opacity="0.7"/></g><defs><filter id="glow8" x="0" y="0" width="24" height="24"><feDropShadow dx="0" dy="0" stdDeviation="10" flood-color="#e0e6f7"/><feDropShadow dx="0" dy="0" stdDeviation="16" flood-color="#dbeafe"/><feDropShadow dx="0" dy="0" stdDeviation="20" flood-color="#fff"/></filter></defs></svg>
+    <!-- More small stars -->
+    <svg class="sparkle blink" style="position:absolute;top:41%;left:19%;z-index:2;animation-delay:0.5s;" width="16" height="16" viewBox="0 0 16 16" fill="none"><g filter="url(#glow9)"><polygon points="8,2 9,5 13,5 10,7 11,12 8,9 5,12 6,7 3,5 7,5" fill="#fff" fill-opacity="0.5"/></g><defs><filter id="glow9" x="0" y="0" width="16" height="16"><feDropShadow dx="0" dy="0" stdDeviation="6" flood-color="#e0e6f7"/><feDropShadow dx="0" dy="0" stdDeviation="10" flood-color="#dbeafe"/><feDropShadow dx="0" dy="0" stdDeviation="12" flood-color="#fff"/></filter></defs></svg>
+    <svg class="sparkle blink" style="position:absolute;bottom:44%;right:7%;z-index:2;animation-delay:1.2s;" width="14" height="14" viewBox="0 0 14 14" fill="none"><g filter="url(#glow10)"><polygon points="7,1 8,4 12,4 9,6 10,11 7,8 4,11 5,6 2,4 6,4" fill="#f8c9d8" fill-opacity="0.5"/></g><defs><filter id="glow10" x="0" y="0" width="14" height="14"><feDropShadow dx="0" dy="0" stdDeviation="5" flood-color="#e0e6f7"/><feDropShadow dx="0" dy="0" stdDeviation="8" flood-color="#dbeafe"/><feDropShadow dx="0" dy="0" stdDeviation="10" flood-color="#fff"/></filter></defs></svg>
+  </div>
+  {% include "components/_navbar.html" %}
+  <section class="relative max-w-sm mx-auto px-2 sm:px-4 lg:px-6 py-3 rounded-2xl shadow-xl mt-16 animate-fade-in overflow-hidden z-10 bg-white border-2 border-pink-200" style="min-height:unset;">
+    {% if messages %}
+      {% for message in messages %}
+        <span class="{% if message.tags == 'success' %}text-green-700{% else %}text-red-700{% endif %} block mb-2 animate-bounce-in text-center text-xs">
+          {{ message }}
+        </span>
+      {% endfor %}
+    {% endif %}
+    <div class="text-center space-y-2 mb-5">
+      <div class="mx-auto w-12 h-12 rounded-full bg-gradient-to-r from-indigo-500 to-pink-500 flex items-center justify-center text-white shadow-lg ring-2 ring-white animate-pop-in overflow-hidden">
+        <svg class="w-full h-full" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round"
+            d="M5.121 17.804A13.937 13.937 0 0112 15c2.321 0 4.489.527 6.879 1.804M15 10a3 3 0 11-6 0 3 3 0 016 0z" />
+        </svg>
+      </div>
+      <h2 class="text-xl font-extrabold text-gray-800 animate-slide-in">Your Profile</h2>
+      <p class="text-gray-500 text-sm animate-fade-in">Keep your information up-to-date.</p>
+    </div>
+    <form class="space-y-3 animate-fade-in" method="post">
+      {% csrf_token %}
+      <div class="flex flex-col items-center">
+        <div class="w-full">
+          <label for="username" class="block text-sm font-medium text-gray-700 mb-1 text-left">Username</label>
+          <input id="username" name="username" type="text" value="{{ user.username }}" class="w-full px-3 py-2 bg-white border border-gray-300 rounded-xl shadow-sm focus:bg-gray-100 focus:ring-2 focus:ring-pink-400 focus:scale-105 focus:outline-none transition-all duration-300 text-sm" />
+        </div>
+        {% if errors.username %}
+          <span class="text-red-600 text-xs animate-shake">{{ errors.username }}</span>
+        {% endif %}
+      </div>
+      <div class="flex flex-col items-center">
+        <div class="w-full">
+          <label for="email" class="block text-sm font-medium text-gray-700 mb-1 text-left">Email</label>
+          <input id="email" name="email" type="email" value="{{ user.email }}" class="w-full px-3 py-2 bg-white border border-gray-300 rounded-xl shadow-sm focus:bg-gray-100 focus:ring-2 focus:ring-indigo-400 focus:scale-105 focus:outline-none transition-all duration-300 text-sm" />
+        </div>
+        {% if errors.email %}
+          <span class="text-red-600 text-xs animate-shake">{{ errors.email }}</span>
+        {% endif %}
+      </div>
+      <div class="flex flex-col items-center">
+        <div class="w-full">
+          <label for="first_name" class="block text-sm font-medium text-gray-700 mb-1 text-left">First Name</label>
+          <input id="first_name" name="first_name" type="text" value="{{ user.first_name }}" class="w-full px-3 py-2 bg-white border border-gray-300 rounded-xl shadow-sm focus:bg-gray-100 focus:ring-2 focus:ring-pink-400 focus:scale-105 focus:outline-none transition-all duration-300 text-sm" />
+        </div>
+      </div>
+      <div class="flex flex-col items-center">
+        <div class="w-full">
+          <label for="last_name" class="block text-sm font-medium text-gray-700 mb-1 text-left">Last Name</label>
+          <input id="last_name" name="last_name" type="text" value="{{ user.last_name }}" class="w-full px-3 py-2 bg-white border border-gray-300 rounded-xl shadow-sm focus:bg-gray-100 focus:ring-2 focus:ring-indigo-400 focus:scale-105 focus:outline-none transition-all duration-300 text-sm" />
+        </div>
+      </div>
+      <div class="border-t border-gray-200 pt-3">
+        <div class="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-3">
+          <button type="button"
+            class="w-full sm:w-auto px-3 py-2 text-indigo-600 border border-indigo-500 rounded-xl font-medium hover:bg-indigo-50 transition-all duration-300 animate-fade-in text-sm">
+            Change Password
+          </button>
+          <button type="submit"
+            class="w-full sm:w-auto px-3 py-2 bg-gradient-to-r from-pink-500 to-indigo-600 text-white font-semibold rounded-xl shadow-md hover:scale-105 hover:opacity-90 transition-all duration-300 animate-fade-in text-sm">
+            Update Changes
+          </button>
+        </div>
+      </div>
+    </form>
+  </section>
+  <style>
+    @keyframes fade-in {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .animate-fade-in {
+      animation: fade-in 0.7s cubic-bezier(.4,2,.6,1) both;
+    }
+    @keyframes pop-in {
+      0% { transform: scale(0.7); opacity: 0; }
+      80% { transform: scale(1.1); opacity: 1; }
+      100% { transform: scale(1); }
+    }
+    .animate-pop-in {
+      animation: pop-in 0.7s cubic-bezier(.4,2,.6,1) both;
+    }
+    @keyframes slide-in {
+      from { opacity: 0; transform: translateY(-20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .animate-slide-in {
+      animation: slide-in 0.7s cubic-bezier(.4,2,.6,1) both;
+    }
+    @keyframes bounce-in {
+      0% { transform: scale(0.8); opacity: 0; }
+      60% { transform: scale(1.05); opacity: 1; }
+      100% { transform: scale(1); }
+    }
+    .animate-bounce-in {
+      animation: bounce-in 0.7s cubic-bezier(.4,2,.6,1) both;
+    }
+    @keyframes shake {
+      10%, 90% { transform: translateX(-2px); }
+      20%, 80% { transform: translateX(4px); }
+      30%, 50%, 70% { transform: translateX(-8px); }
+      40%, 60% { transform: translateX(8px); }
+    }
+    .animate-shake {
+      animation: shake 0.5s cubic-bezier(.36,.07,.19,.97) both;
+    }
+    @keyframes float-slow {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-20px); }
+    }
+    .animate-float-slow {
+      animation: float-slow 8s ease-in-out infinite;
+    }
+    @keyframes float-reverse {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(20px); }
+    }
+    .animate-float-reverse {
+      animation: float-reverse 10s ease-in-out infinite;
+    }
+    @keyframes rotate-slow {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+    .animate-rotate-slow {
+      animation: rotate-slow 18s linear infinite;
+    }
+    @keyframes wave {
+      0%, 100% { stroke-dashoffset: 0; }
+      50% { stroke-dashoffset: 40; }
+    }
+    .animate-wave path {
+      stroke-dasharray: 80;
+      animation: wave 6s ease-in-out infinite;
+    }
+    @keyframes feather-float {
+      0%, 100% { transform: translateY(0) rotate(-10deg); }
+      50% { transform: translateY(-12px) rotate(10deg); }
+    }
+    .animate-feather {
+      animation: feather-float 7s ease-in-out infinite;
+    }
+    @keyframes leaf-sway {
+      0%, 100% { transform: rotate(-8deg) scale(1); }
+      50% { transform: rotate(8deg) scale(1.08); }
+    }
+    .animate-leaf {
+      animation: leaf-sway 5s ease-in-out infinite;
+    }
+    .blink {
+      animation: sparkle-blink 1.8s infinite alternate;
+    }
+    @keyframes sparkle-blink {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.45; transform: scale(1.18); }
+    }
+  </style>
+</body>
+</html>
+
